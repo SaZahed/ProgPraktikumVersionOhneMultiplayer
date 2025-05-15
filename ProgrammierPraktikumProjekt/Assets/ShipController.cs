@@ -38,14 +38,16 @@ public class ShipController : MonoBehaviour
         }  
     }
     private void applyForces(float thrustInput)
-
     {
-        //Kräfte berechnen
+        // Kräfte berechnen
         float thrust = thrustInput * thrustForce;
-        //float drag = dragCoefficient * rb.maxLinearVelocity.magnitude * rb.linearVelocity.magnitude;
+        float drag = dragCoefficient * rb.linearVelocity.magnitude * rb.linearVelocity.magnitude;
 
-        //Nettokraft berechnen 
+        // Nettokraft berechnen
+        float netForce = thrust - drag;
+        Vector3 acceleration = (netForce / rb.mass) * transform.forward;
 
-        //Kraft auf das Rigidbody anwenden
+        // Kraft auf das Rigidbody anwenden
+        rb.AddForce(acceleration, ForceMode.Acceleration);
     }
 }
