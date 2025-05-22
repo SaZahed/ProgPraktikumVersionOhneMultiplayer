@@ -19,4 +19,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+    public void quitSimulation()
+    {
+        Debug.Log("Die Simulation wurde beendeet...");
+        Application.Quit();
+    }
 }
