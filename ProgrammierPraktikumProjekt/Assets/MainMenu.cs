@@ -19,6 +19,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+    public void switchToOptions()
+    {
+        SceneManager.LoadScene("Options");
+    }
     public void quitSimulation()
     {
         Debug.Log("Die Simulation wurde beendeet...");
