@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     }
     public void startSimulation()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SzeneAuswahl");
     }
     public void switchToOptions()
     {
