@@ -5,6 +5,10 @@ public class ShipController : MonoBehaviour
     [SerializeField] private float thrustForce = 500f; // schubkraft motor
     [SerializeField] private float dragCoefficient = 0.1f; // widerstandskoeffizient
     [SerializeField] private float rotationSpeed = 50f; // drehgeschgeschwindigkeit
+   
+    [SerializeField] private float anchorDropForce = 100f; // Kraft beim Anker fallen lassen
+    [SerializeField] private float anchorLiftForce = 50f; // Kraft beim Anker heben
+    [SerializeField] private bool anchorDropped = false; // bool wert anfangs auf false 
 
     private Rigidbody rb;   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +30,15 @@ public class ShipController : MonoBehaviour
 
         applyForces(thrustInput);
         appplyRoatation(turnInput);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            dropAnchor();
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            liftAnchor();
+        }
     }
     private void appplyRoatation(float turnInput)
     {
@@ -50,4 +63,19 @@ public class ShipController : MonoBehaviour
         // Kraft auf das Rigidbody anwenden
         rb.AddForce(acceleration, ForceMode.Acceleration);
     }
+    private void dropAnchor()
+    {
+        anchorDropped = true;
+        thrustForce = 0; //das schiff soll stoppen
+
+       
+    }
+    private void liftAnchor()
+    {
+            anchorDropped = false;
+            thrustForce = 500f; // Schubkraft wiederherstellen
+
+    }
 }
+
+  
