@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    [SerializeField] private float thrustForce = 500f; // schubkraft motor
-    [SerializeField] private float dragCoefficient = 0.1f; // widerstandskoeffizient
-    [SerializeField] private float rotationSpeed = 50f; // drehgeschgeschwindigkeit
+    [SerializeField] private float thrustForce = 500f; // Schubkraft Motor
+    [SerializeField] private float dragCoefficient = 0.1f; // Widerstandskoeffizient
+    [SerializeField] private float rotationSpeed = 50f; // Drehgeschwindigkeit
    
     [SerializeField] private float anchorDropForce = 100f; // Kraft beim Anker fallen lassen
     [SerializeField] private float anchorLiftForce = 50f; // Kraft beim Anker heben
-    [SerializeField] private bool anchorDropped = false; // bool wert anfangs auf false 
+    [SerializeField] private bool anchorDropped = false; // bool Wert anfangs auf false 
 
     private Rigidbody rb;   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,11 +25,11 @@ public class ShipController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float thrustInput = Input.GetAxis("Vertical"); // w/s schubsteuerung
-        float turnInput = Input.GetAxis("Horizontal"); // a/d drehsteuerung
+        float thrustInput = Input.GetAxis("Vertical"); // w/s Schubsteuerung
+        float turnInput = Input.GetAxis("Horizontal"); // a/d Drehsteuerung
 
         applyForces(thrustInput);
-        appplyRoatation(turnInput);
+        applyRotation(turnInput);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -40,7 +40,7 @@ public class ShipController : MonoBehaviour
             liftAnchor();
         }
     }
-    private void appplyRoatation(float turnInput)
+    private void applyRotation(float turnInput)
     {
      if(Mathf.Abs(turnInput)> 0.1f)
         {
@@ -52,6 +52,9 @@ public class ShipController : MonoBehaviour
     }
     private void applyForces(float thrustInput)
     {
+        if (anchorDropped)
+            return;
+
         // Kräfte berechnen
         float thrust = thrustInput * thrustForce;
         float drag = dragCoefficient * rb.linearVelocity.magnitude * rb.linearVelocity.magnitude;
@@ -66,15 +69,12 @@ public class ShipController : MonoBehaviour
     private void dropAnchor()
     {
         anchorDropped = true;
-        thrustForce = 0; //das schiff soll stoppen
-
-       
+        rb.linearDamping = 10f; // starker Widerstand, damit das Schiff schnell stoppt
     }
     private void liftAnchor()
     {
-            anchorDropped = false;
-            thrustForce = 500f; // Schubkraft wiederherstellen
-
+        anchorDropped = false;
+        rb.linearDamping = 0.1f; // normaler Widerstand
     }
 }
 
