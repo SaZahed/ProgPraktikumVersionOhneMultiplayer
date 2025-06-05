@@ -1,13 +1,28 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CameraSwitcher : MonoBehaviour
 {
+    private UIDocument uiDocument;
+
     [SerializeField] private Camera mainCam;
     [SerializeField] private Camera bridgeCam;
 
     private bool bridgeCamOn = false;
 
-    void Start()
+    private void Awake()
+    {
+        uiDocument = GetComponent<UIDocument>();
+    }
+
+    private void OnEnable()
+    {
+        var root = uiDocument.rootVisualElement;
+
+        root.Q<Button>("CameraSwitch").clicked += () => SwitchCamera();
+    }
+
+        void Start()
     {
         mainCam.enabled = true; // zu Beginn ist die Main Camera aktiv
         bridgeCam.enabled = false;
