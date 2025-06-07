@@ -6,8 +6,8 @@ public class ShipController : MonoBehaviour
     [SerializeField] private float dragCoefficient = 0.1f; // Widerstandskoeffizient
     [SerializeField] private float rotationSpeed = 50f; // Drehgeschwindigkeit
    
-    [SerializeField] private float anchorDropForce = 100f; // Kraft beim Anker fallen lassen
-    [SerializeField] private float anchorLiftForce = 50f; // Kraft beim Anker heben
+    //[SerializeField] private float anchorDropForce = 100f; // Kraft beim Anker fallen lassen
+    //[SerializeField] private float anchorLiftForce = 50f; // Kraft beim Anker heben
     [SerializeField] private bool anchorDropped = false; // bool Wert anfangs auf false 
 
     private Rigidbody rb;   
@@ -38,7 +38,7 @@ public class ShipController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("L gedrückt");//debug nachricht (die nicht angezeigt wird)
-            //liftAnchor();
+            liftAnchor();
         }
     }
     private void applyRotation(float turnInput)
@@ -75,8 +75,8 @@ public class ShipController : MonoBehaviour
     private void liftAnchor()
     {
         anchorDropped = false;
-        Start();
-        //rb.linearDamping = 0.1f; // normaler Widerstand
+        //Start();
+        rb.linearDamping = 0.1f; // normaler Widerstand
     }
 }
 
