@@ -35,9 +35,10 @@ public class ShipController : MonoBehaviour
         {
             dropAnchor();
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            liftAnchor();
+            Debug.Log("L gedrückt");//debug nachricht (die nicht angezeigt wird)
+            //liftAnchor();
         }
     }
     private void applyRotation(float turnInput)
@@ -74,7 +75,8 @@ public class ShipController : MonoBehaviour
     private void liftAnchor()
     {
         anchorDropped = false;
-        rb.linearDamping = 0.1f; // normaler Widerstand
+        Start();
+        //rb.linearDamping = 0.1f; // normaler Widerstand
     }
 }
 
