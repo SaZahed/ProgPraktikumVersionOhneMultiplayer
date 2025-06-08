@@ -2,4 +2,6 @@
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=0b28496bb2e1f974caf4e51ef77c22bf&amp;type=3#MainMenuStyle" />
     <ui:Button text="Kamera wechseln" name="CameraSwitch" class="button" style="flex-direction: column; align-self: flex-end; width: auto; font-size: 40px;" />
     <ui:Button text="Pause" name="Stop" class="button" style="flex-direction: column; align-self: flex-end; width: auto; font-size: 40px; align-content: flex-start; -unity-text-align: middle-left;" />
+    <ui:Label text="Pause" name="Pause" class="pause-label" style="align-self: center; font-size: 60px;" />
+    <ui:Label name="Speed" text="Geschwindigkeit:" class="speed-label" style="font-size: 40px; align-self: flex-start;" />
 </ui:UXML>

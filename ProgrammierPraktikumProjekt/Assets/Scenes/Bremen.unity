@@ -523,7 +523,7 @@ MonoBehaviour:
   endSmoothness: 0.85
   smoothnessFadeStart: 100
   smoothnessFadeDistance: 500
-  tessellation: 1
+  tessellation: 0
   maxTessellationFactor: 3
   tessellationFactorFadeStart: 150
   tessellationFactorFadeRange: 1850
@@ -1100,6 +1100,7 @@ MonoBehaviour:
   dragCoefficient: 0.1
   rotationSpeed: 50
   anchorDropped: 0
+  uiDocument: {fileID: 628191921}
 --- !u!4 &1042243716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37770913fa0e84145b1be3caa78f01c1, type: 3}

@@ -286,7 +286,7 @@ MonoBehaviour:
         m_CustomOrBakedReflection:
           bitDatas:
             data1: 4643523019153229
-            data2: 12898309406071980048
+            data2: 12898309440431718416
           lodBias: 1
           lodBiasMode: 0
           lodBiasQualityLevel: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
         m_RealtimeReflection:
           bitDatas:
             data1: 4638910381585229
-            data2: 12898310333516513304
+            data2: 12898310299156774936
           lodBias: 1
           lodBiasMode: 0
           lodBiasQualityLevel: 0

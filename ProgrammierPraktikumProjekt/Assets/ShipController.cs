@@ -1,36 +1,32 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
     [SerializeField] private float thrustForce = 500f; // Schubkraft Motor
     [SerializeField] private float dragCoefficient = 0.1f; // Widerstandskoeffizient
     [SerializeField] private float rotationSpeed = 50f; // Drehgeschwindigkeit
-   
     //[SerializeField] private float anchorDropForce = 100f; // Kraft beim Anker fallen lassen
     //[SerializeField] private float anchorLiftForce = 50f; // Kraft beim Anker heben
     [SerializeField] private bool anchorDropped = false; // bool Wert anfangs auf false 
-
+    [SerializeField] private UIDocument uiDocument; 
+    private Label speedLabel; 
     private Rigidbody rb;   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
      rb = GetComponent<Rigidbody>(); // Rigidbody-Referenz abrufen   
+    if (uiDocument != null)
+    {
+        var root = uiDocument.rootVisualElement;
+        speedLabel = root.Q<Label>("Speed"); 
+    }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        float thrustInput = Input.GetAxis("Vertical"); // w/s Schubsteuerung
-        float turnInput = Input.GetAxis("Horizontal"); // a/d Drehsteuerung
-
-        applyForces(thrustInput);
-        applyRotation(turnInput);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             dropAnchor();
@@ -40,6 +36,21 @@ public class ShipController : MonoBehaviour
             Debug.Log("L gedrückt");//debug nachricht (die nicht angezeigt wird)
             liftAnchor();
         }
+        // Geschwindigkeit berechnen & anzeigen
+        float speed = rb.linearVelocity.magnitude;
+        if (speedLabel != null)
+        {
+            speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        float thrustInput = Input.GetAxis("Vertical"); // w/s Schubsteuerung
+        float turnInput = Input.GetAxis("Horizontal"); // a/d Drehsteuerung
+
+        applyForces(thrustInput);
+        applyRotation(turnInput);
     }
     private void applyRotation(float turnInput)
     {

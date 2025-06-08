@@ -91,3 +91,27 @@
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
 }
+
+.pause-label {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    font-size: 40px;
+    color: white;
+    -unity-font-style: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 16px;
+    border-radius: 8px;
+    display: none; /* wird per Script auf Flex gesetzt */
+}
+
+.speed-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 40px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 6px 12px;
+    border-radius: 6px;
+}
