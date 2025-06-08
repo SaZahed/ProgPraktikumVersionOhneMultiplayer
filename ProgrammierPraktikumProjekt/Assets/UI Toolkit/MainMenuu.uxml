@@ -1,8 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=0b28496bb2e1f974caf4e51ef77c22bf&amp;type=3#MainMenuStyle" />
     <ui:VisualElement name="StartSeiteContainer" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/cartoon-background-with-sea-ship-and-natural-beauty-free-video.jpg?fileID=2800000&amp;guid=a2d502934fc6e9a499f780a3b288ac82&amp;type=3#cartoon-background-with-sea-ship-and-natural-beauty-free-video&quot;); display: flex;">
-        <ui:Label text="Main Menu" name="Header" class="header" style="white-space: nowrap; -unity-text-align: upper-center; opacity: 1; top: 0; font-size: 100px; height: auto; position: relative; left: 0; right: 0; bottom: 0; margin-top: 136px; margin-left: 4px;" />
-        <ui:Button text="Studierende" name="StudierendeButton" class="button" style="margin-top: 145px;" />
+        <ui:Label text="Schiffsimulation" name="StartSeiteHeader" class="header" style="white-space: nowrap; -unity-text-align: upper-center; opacity: 1; top: 0; font-size: 100px; height: auto; position: relative; left: 0; right: 0; bottom: 0; margin-top: 136px; margin-left: 4px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); background-color: rgb(255, 255, 255); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px;" />
+        <ui:Button text="Studierende" name="StudierendeButton" class="button" style="margin-top: 92px;" />
         <ui:Button text="Lehrende" name="LehrendeButton" class="button" style="margin-top: 20px;" />
         <ui:Button text="Schulungsteilnehmende" name="SchulungsteilnehmerButton" class="button" style="margin-top: 20px;" />
         <ui:Button text="Options" name="OptionsButton" class="button" style="margin-top: 20px;" />
@@ -11,16 +11,25 @@
     <ui:VisualElement name="StudierendeContainer" enabled="true" style="flex-grow: 1; display: none; background-image: url(&quot;project://database/Assets/cartoon-background-with-sea-ship-and-natural-beauty-free-video.jpg?fileID=2800000&amp;guid=a2d502934fc6e9a499f780a3b288ac82&amp;type=3#cartoon-background-with-sea-ship-and-natural-beauty-free-video&quot;);">
         <ui:Label text="Studierende" name="StudierendeOptionen" emoji-fallback-support="true" class="header" />
         <ui:DropdownField label="Szene" name="StudierendeDropdown" choices="Bremen,Bremerhaven,Nordsee" class="dropdown" />
+        <ui:DropdownField label="Übungsszenarien" name="UebungsszenarienDropdown" class="dropdown" style="margin-top: 20px;" />
+        <ui:DropdownField label="Multi User" name="MultiUserDropdown" choices="Ja,Nein" class="dropdown" style="margin-top: 20px;" />
         <ui:Button text="Play" name="StudierendePlayButton" class="button" style="margin-top: 23px; display: flex;" />
+        <ui:Button text="Zurück" name="StudierendeZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
     <ui:VisualElement name="LehrendeContainer" class="background" style="flex-grow: 1; display: none;">
         <ui:Label text="Lehrende" name="LehrendeOptionen" class="header" />
-        <ui:DropdownField label="Szene" choices="Bremen,Bremerhaven,Nordsee" name="LehrendeDropdown" class="dropdown" />
-        <ui:Button text="Play" name="LehrendePlayButton" class="button" style="margin-top: 23px;" />
+        <ui:Button text="Szenerio Erstellen" name="SzenarioErstellenButton" class="button button2" />
+        <ui:Button text="Steuerung der Simulation" name="SteuerungderSimulationButton" class="button button2" style="margin-top: 15px;" />
+        <ui:Button text="Überwachung der Studierenden" name="UeberwachungStudierendenButton" class="button2" style="margin-top: 15px;" />
+        <ui:Button text="Überwachung von Schulungsteilnehmenden" name="UeberwachungSchulungsteilnehmendenButton" class="button2" style="margin-top: 15px;" />
+        <ui:DropdownField label="Szene" choices="Bremen,Bremerhaven,Nordsee" name="LehrendeDropdown" class="dropdown" style="display: none;" />
+        <ui:Button text="Play" name="LehrendePlayButton" class="button" style="margin-top: 23px; display: none;" />
+        <ui:Button text="Zurück" name="LehrendeZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
     <ui:VisualElement name="SchulungsteilnehmerContainer" class="background" style="flex-grow: 1; display: none;">
         <ui:Label text="Schulungsteilnehmende" name="SchulungsteilnehmerOptionen" class="header" />
         <ui:DropdownField label="Szene" name="SchulungsteilnehmerDropdown" choices="Bremen,Bremerhaven,Nordsee" class="dropdown" />
         <ui:Button text="Play" name="SchulungsteilnehmerPlayButton" class="button" style="margin-top: 23px;" />
+        <ui:Button text="Zurück" name="SchulungsteilnehmerZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
 </ui:UXML>

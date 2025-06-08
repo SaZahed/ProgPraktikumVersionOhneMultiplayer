@@ -46,6 +46,11 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("StudierendePlayButton").clicked += () => LoadScene(studierendeDropdown.value);
         root.Q<Button>("LehrendePlayButton").clicked += () => LoadScene(lehrendeDropdown.value);
         root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () => LoadScene(schulungsteilnehmerDropdown.value);
+
+        // Die Zurück Buttons bei den Containern
+        root.Q<Button>("StudierendeZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
+        root.Q<Button>("LehrendeZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
+        root.Q<Button>("SchulungsteilnehmerZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
     }
 
     private void ShowPanel(VisualElement targetPanel)
