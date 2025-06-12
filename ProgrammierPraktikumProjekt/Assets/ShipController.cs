@@ -19,7 +19,8 @@ public class ShipController : MonoBehaviour
     if (uiDocument != null)
     {
         var root = uiDocument.rootVisualElement;
-        speedLabel = root.Q<Label>("Speed"); 
+        speedLabel = root.Q<Label>("Speed");
+        ankerText = root.Q<Label>("Anker");
     }
     }
 
@@ -35,15 +36,11 @@ public class ShipController : MonoBehaviour
         {
             Debug.Log("L gedrückt");//debug nachricht (die nicht angezeigt wird)
             liftAnchor();
+            ankerText.style.display = DisplayStyle.None;
         }
         // Geschwindigkeit berechnen & anzeigen
         float speed = rb.linearVelocity.magnitude;
-        if (speedLabel != null)
-        {
-            speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
-        }
-
-
+        speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
     }
 
     private void FixedUpdate()
@@ -97,8 +94,6 @@ public class ShipController : MonoBehaviour
         
         targetPanel.style.display = DisplayStyle.Flex;
     }
-
-
 }
 
 
