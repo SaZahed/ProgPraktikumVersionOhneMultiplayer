@@ -6,11 +6,10 @@ public class ShipController : MonoBehaviour
     [SerializeField] private float thrustForce = 500f; // Schubkraft Motor
     [SerializeField] private float dragCoefficient = 0.1f; // Widerstandskoeffizient
     [SerializeField] private float rotationSpeed = 50f; // Drehgeschwindigkeit
-    //[SerializeField] private float anchorDropForce = 100f; // Kraft beim Anker fallen lassen
-    //[SerializeField] private float anchorLiftForce = 50f; // Kraft beim Anker heben
     [SerializeField] private bool anchorDropped = false; // bool Wert anfangs auf false 
     [SerializeField] private UIDocument uiDocument; 
-    private Label speedLabel; 
+    private Label speedLabel;
+    private Label ankerText;
     private Rigidbody rb;   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +29,7 @@ public class ShipController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             dropAnchor();
+            ShowPanel(ankerText);
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -42,6 +42,8 @@ public class ShipController : MonoBehaviour
         {
             speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
         }
+
+
     }
 
     private void FixedUpdate()
@@ -86,9 +88,17 @@ public class ShipController : MonoBehaviour
     private void liftAnchor()
     {
         anchorDropped = false;
-        //Start();
         rb.linearDamping = 0.1f; // normaler Widerstand
     }
+
+    private void ShowPanel(Label targetPanel)
+    {
+        ankerText.style.display = DisplayStyle.None;
+        
+        targetPanel.style.display = DisplayStyle.Flex;
+    }
+
+
 }
 
-  
+

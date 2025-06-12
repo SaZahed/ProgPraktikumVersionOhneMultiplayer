@@ -4,4 +4,5 @@
     <ui:Button text="Pause" name="Stop" class="button" style="flex-direction: column; align-self: flex-end; width: auto; font-size: 40px; align-content: flex-start; -unity-text-align: middle-left;" />
     <ui:Label text="Pause" name="Pause" class="pause-label" style="align-self: center; font-size: 60px;" />
     <ui:Label name="Speed" text="Geschwindigkeit:" class="speed-label" style="font-size: 40px; align-self: flex-start;" />
+    <ui:Label text="Anker wurde gesetzt" name="Anker" class="speed-label" style="top: 76px; left: 12px; display: none;" />
 </ui:UXML>
