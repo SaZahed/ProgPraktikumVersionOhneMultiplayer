@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 628191921}
   - component: {fileID: 628191920}
   - component: {fileID: 628191923}
+  - component: {fileID: 628191924}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -810,6 +811,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab1b8ab8fb7cd2c4eacbf1899a3296cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &628191924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628191919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed75cfaea4f77664599c1aca75ac1e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &819757256
@@ -970,7 +983,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276991228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1012,7 +1025,7 @@ VisualEffect:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276991228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Asset: {fileID: 8926484042661614526, guid: 73aa72bb4d6ed5249b670ddb1f37da47, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
