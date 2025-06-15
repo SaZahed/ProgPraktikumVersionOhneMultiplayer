@@ -48,4 +48,27 @@ public class WeatherManager : MonoBehaviour
             SnowVFX.SetFloat("Intensity", SnowIntensity);
         }
     }
+
+    public void SetWetter(string type)
+{
+    RainIntensity = 0f;
+    SnowIntensity = 0f;
+    HailIntensity = 0f;
+
+    switch (type)
+    {
+        case "Regen":
+            RainIntensity = 1f;
+            break;
+        case "Schnee":
+            SnowIntensity = 1f;
+            break;
+        case "Hagel":
+            HailIntensity = 1f;
+            break;
+        case "Klares Wetter":
+            break;
+        }
+}
+
 }
