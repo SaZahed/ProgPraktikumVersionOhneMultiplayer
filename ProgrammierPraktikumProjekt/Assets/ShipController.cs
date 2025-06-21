@@ -34,7 +34,7 @@ public class ShipController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log("L gedrückt");//debug nachricht (die nicht angezeigt wird)
+            Debug.Log("L gedrückt");
             liftAnchor();
             ankerText.style.display = DisplayStyle.None;
         }
@@ -93,6 +93,16 @@ public class ShipController : MonoBehaviour
         ankerText.style.display = DisplayStyle.None;
         
         targetPanel.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ufer"))
+        {
+            anchorDropped = true;
+            rb.linearDamping = 10f;
+            Debug.Log("Schiff gestoppt durch Trigger: " + other.name);
+        }
     }
 }
 
