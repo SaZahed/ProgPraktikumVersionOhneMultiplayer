@@ -10,10 +10,15 @@ public class NeuesMainMenu : MonoBehaviour
     private VisualElement studierendeContainer;
     private VisualElement lehrendeContainer;
     private VisualElement schulungsteilnehmerContainer;
+   
+    private VisualElement szenenErstellungContainer;
+
 
     private DropdownField studierendeDropdown;
     private DropdownField lehrendeDropdown;
     private DropdownField schulungsteilnehmerDropdown;
+    private DropdownField szenenErstellungDropdown;
+
 
     private void Awake()
     {
@@ -29,6 +34,9 @@ public class NeuesMainMenu : MonoBehaviour
         studierendeContainer = root.Q<VisualElement>("StudierendeContainer");
         lehrendeContainer = root.Q<VisualElement>("LehrendeContainer");
         schulungsteilnehmerContainer = root.Q<VisualElement>("SchulungsteilnehmerContainer");
+
+        szenenErstellungContainer = root.Q<VisualElement>("SzenenErstellungContainer");
+
 
         // Dropdowns zuweisen
         studierendeDropdown = root.Q<DropdownField>("StudierendeDropdown");
@@ -51,6 +59,8 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("StudierendeZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
         root.Q<Button>("LehrendeZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
         root.Q<Button>("SchulungsteilnehmerZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
+        root.Q<Button>("SzenenErstellungZurueckButton").clicked += () => ShowPanel(lehrendeContainer);
+
     }
 
     private void ShowPanel(VisualElement targetPanel)

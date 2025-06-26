@@ -32,4 +32,10 @@
         <ui:Button text="Play" name="SchulungsteilnehmerPlayButton" class="button" style="margin-top: 23px;" />
         <ui:Button text="Zurück" name="SchulungsteilnehmerZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
+    <ui:VisualElement name="SzenenErstellungContainer" class="background" style="flex-grow: 1; display: none;">
+        <ui:Label text="Schulungsteilnehmende" name="SzenenErstellungOptionen" class="header" />
+        <ui:DropdownField label="Dropdown" name="SzenenDropdown" />
+        <ui:DropdownField label="Dropdown" name="WetterDropdown" />
+        <ui:DropdownField label="Dropdown" name="SchiffDropdown" />
+    </ui:VisualElement>
 </ui:UXML>
