@@ -67,6 +67,7 @@ public class WeatherManager : MonoBehaviour
     RainIntensity = 0f;
     SnowIntensity = 0f;
     HailIntensity = 0f;
+    FogIntensity = 0f;
 
     switch (type)
     {
