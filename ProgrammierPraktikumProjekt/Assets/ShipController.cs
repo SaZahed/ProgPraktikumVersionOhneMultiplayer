@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
+    [SerializeField] private GameObject shipAgent;//Agent
+    [SerializeField] private GameObject startPosition;//Agent
     [SerializeField] private float thrustForce = 500f; // Schubkraft Motor
     [SerializeField] private float dragCoefficient = 0.1f; // Widerstandskoeffizient
     [SerializeField] private float rotationSpeed = 50f; // Drehgeschwindigkeit
@@ -10,7 +13,9 @@ public class ShipController : MonoBehaviour
     [SerializeField] private UIDocument uiDocument; 
     private Label speedLabel;
     private Label ankerText;
-    private Rigidbody rb;   
+    private Rigidbody rb;
+    private NavMeshAgent agent;
+    private Vector3 endPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +27,9 @@ public class ShipController : MonoBehaviour
         speedLabel = root.Q<Label>("Speed");
         ankerText = root.Q<Label>("Anker");
     }
+        agent = GetComponent<NavMeshAgent>();
+        endPosition = GameObject.FindGameObjectWithTag("End").transform.position;
+        agent.SetDestination(endPosition);
     }
 
     // Update is called once per frame
@@ -41,6 +49,10 @@ public class ShipController : MonoBehaviour
         // Geschwindigkeit berechnen & anzeigen
         float speed = rb.linearVelocity.magnitude;
         speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
+        if (Input.GetKeyDown("m"))
+        {
+            Instantiate(shipAgent, startPosition.transform.position, Quaternion.identity);
+        }
     }
 
     private void FixedUpdate()
