@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ufer
+  - End
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - ShipSilhouette
   - Water
   - UI
+  - NavMesh
   - Radar
-  - 
   - 
   - 
   - 
