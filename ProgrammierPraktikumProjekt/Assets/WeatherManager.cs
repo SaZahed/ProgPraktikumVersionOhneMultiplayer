@@ -63,30 +63,48 @@ public class WeatherManager : MonoBehaviour
     }
 
     public void SetWetter(string type)
-{
-    RainIntensity = 0f;
-    SnowIntensity = 0f;
-    HailIntensity = 0f;
-    FogIntensity = 0f;
-
-    switch (type)
     {
-        case "Regen":
-            RainIntensity = 1f;
-            break;
-        case "Schnee":
-            SnowIntensity = 1f;
-            break;
-        case "Hagel":
-            HailIntensity = 1f;
-            break;
-        case "Nebel":
-             FogIntensity = 1f;
-             break;
+        RainIntensity = 0f;
+        SnowIntensity = 0f;
+        HailIntensity = 0f;
+        FogIntensity = 0f;
 
-        case "Klares Wetter":
-            break;
+        switch (type)
+        {
+            case "Regen":
+                RainIntensity = 1f;
+                break;
+            case "Schnee":
+                SnowIntensity = 1f;
+                break;
+            case "Hagel":
+                HailIntensity = 1f;
+                break;
+            case "Nebel":
+                 FogIntensity = 1f;
+                 break;
+
+            case "Klares Wetter":
+                break;
         }
-}
+    }
 
+    public void UpdateIntensity(string type, float intensity)
+    {
+        switch (type)
+        {
+            case "Regen":
+                RainIntensity = intensity;
+                break;
+            case "Schnee":
+                SnowIntensity = intensity;
+                break;
+            case "Hagel":
+                HailIntensity = intensity;
+                break;
+            case "Nebel":
+                FogIntensity = intensity;
+                break;
+        }
+    }
 }

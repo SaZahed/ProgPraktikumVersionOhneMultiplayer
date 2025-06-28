@@ -5,6 +5,8 @@ public class Wetter : MonoBehaviour
 {
     private UIDocument uiDocument;
     private DropdownField WetterDropdown;
+    private Slider IntensitaetsSlider;
+
     [SerializeField] private WeatherManager weatherManager;
 
     private void Awake()
@@ -16,10 +18,16 @@ public class Wetter : MonoBehaviour
     {
         var root = uiDocument.rootVisualElement;
         WetterDropdown = root.Q<DropdownField>("WetterDropdown");
+        IntensitaetsSlider = root.Q<Slider>("IntensitaetsSlider");
 
         if (WetterDropdown != null)
         {
             WetterDropdown.RegisterValueChangedCallback(OnWetterChanged);
+        }
+
+        if (IntensitaetsSlider != null)
+        {
+            IntensitaetsSlider.RegisterValueChangedCallback(OnIntensitaetChanged);
         }
     }
 
@@ -27,5 +35,12 @@ public class Wetter : MonoBehaviour
     {
         weatherManager.SetWetter(evt.newValue);
     }
-}
 
+    private void OnIntensitaetChanged(ChangeEvent<float> evt)
+    {
+        if (WetterDropdown != null)
+        {
+            weatherManager.UpdateIntensity(WetterDropdown.value, evt.newValue);
+        }
+    }
+}
