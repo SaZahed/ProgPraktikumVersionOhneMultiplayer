@@ -27,6 +27,9 @@ public class TimeController : MonoBehaviour
     private TimeSpan sunriseTime;
     private TimeSpan sunsetTime;
 
+    [SerializeField] private Material daySkybox;
+    [SerializeField] private Material nightSkybox;
+
 
 
 
@@ -44,6 +47,7 @@ public class TimeController : MonoBehaviour
     {
         UpdateTimeOfDay();
         RotateSun();
+        UpdateSkybox();
 
     }
     private void UpdateTimeOfDay()
@@ -88,4 +92,16 @@ public class TimeController : MonoBehaviour
         }
         return difference;
     }
+    private void UpdateSkybox()
+    {
+        bool isNight = currentTime.TimeOfDay <= sunriseTime || currentTime.TimeOfDay >= sunsetTime;
+
+        if (isNight)
+        {
+            RenderSettings.skybox = nightSkybox;
+        }
+    }
+
+
+
 }
