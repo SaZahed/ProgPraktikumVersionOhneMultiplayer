@@ -16,6 +16,7 @@ public class ShipController : MonoBehaviour
     private Rigidbody rb;
     private NavMeshAgent agent;
     private Vector3 endPosition;
+    private float thrustBoost = 0f;  // zusätzlicher Schub
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,15 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            //thrustBoost = 0.5f;  // Schub um 0.5 erhöhen (auf einer Skala von -1 bis 1)//chatgpt empfehlung?
+            rb.linearDamping = 0.0f; //mein Ansatz den Wiederstand auf 0, damit es schneller wird "unsauber"
+        }
+        //if (Input.GetKeyUp(KeyCode.H))
+        //{
+        //    thrustBoost = 0f; // wenn H losgelassen wird, Boost zurücksetzen
+        //}
         if (Input.GetKeyDown(KeyCode.Space))
         {
             dropAnchor();
