@@ -61,6 +61,9 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("SchulungsteilnehmerZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
         root.Q<Button>("SzenenErstellungZurueckButton").clicked += () => ShowPanel(lehrendeContainer);
 
+        root.Q<Button>("SzenarioErstellenButton").clicked += () => ShowPanel(szenenErstellungContainer);
+
+
     }
 
     private void ShowPanel(VisualElement targetPanel)
@@ -69,6 +72,8 @@ public class NeuesMainMenu : MonoBehaviour
         studierendeContainer.style.display = DisplayStyle.None;
         lehrendeContainer.style.display = DisplayStyle.None;
         schulungsteilnehmerContainer.style.display = DisplayStyle.None;
+
+        szenenErstellungContainer.style.display = DisplayStyle.None;
 
         targetPanel.style.display = DisplayStyle.Flex;
     }
