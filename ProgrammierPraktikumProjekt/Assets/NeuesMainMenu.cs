@@ -15,9 +15,10 @@ public class NeuesMainMenu : MonoBehaviour
 
 
     private DropdownField studierendeDropdown;
-    private DropdownField lehrendeDropdown;
     private DropdownField schulungsteilnehmerDropdown;
-    private DropdownField szenenErstellungDropdown;
+    private DropdownField szenenDropdown;
+    private DropdownField wetterDropdown;
+    private DropdownField schiffDropdown;
 
 
     private void Awake()
@@ -40,8 +41,13 @@ public class NeuesMainMenu : MonoBehaviour
 
         // Dropdowns zuweisen
         studierendeDropdown = root.Q<DropdownField>("StudierendeDropdown");
-        lehrendeDropdown = root.Q<DropdownField>("LehrendeDropdown");
         schulungsteilnehmerDropdown = root.Q<DropdownField>("SchulungsteilnehmerDropdown");
+        
+        //Dropdown bei "Szenen Erstellen"
+        szenenDropdown = root.Q<DropdownField>("SzenenDropdown");
+        wetterDropdown = root.Q<DropdownField>("WetterDropdown");
+        schiffDropdown = root.Q<DropdownField>("SchiffDropdown");
+
 
         // Die Buttons auf der StartSeite
         root.Q<Button>("StudierendeButton").clicked += () => ShowPanel(studierendeContainer);
@@ -52,7 +58,6 @@ public class NeuesMainMenu : MonoBehaviour
 
         // Die Play Buttons bei den Containern
         root.Q<Button>("StudierendePlayButton").clicked += () => LoadScene(studierendeDropdown.value);
-        root.Q<Button>("LehrendePlayButton").clicked += () => LoadScene(lehrendeDropdown.value);
         root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () => LoadScene(schulungsteilnehmerDropdown.value);
 
         // Die Zurück Buttons bei den Containern
@@ -61,8 +66,8 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("SchulungsteilnehmerZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
         root.Q<Button>("SzenenErstellungZurueckButton").clicked += () => ShowPanel(lehrendeContainer);
 
+        //Buttons bei LehrendeContainer
         root.Q<Button>("SzenarioErstellenButton").clicked += () => ShowPanel(szenenErstellungContainer);
-
 
     }
 

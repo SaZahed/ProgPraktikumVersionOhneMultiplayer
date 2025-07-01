@@ -22,8 +22,6 @@
         <ui:Button text="Steuerung der Simulation" name="SteuerungderSimulationButton" class="button button2" style="margin-top: 15px;" />
         <ui:Button text="Überwachung der Studierenden" name="UeberwachungStudierendenButton" class="button2" style="margin-top: 15px;" />
         <ui:Button text="Überwachung von Schulungsteilnehmenden" name="UeberwachungSchulungsteilnehmendenButton" class="button2" style="margin-top: 15px;" />
-        <ui:DropdownField label="Szene" choices="Bremen,Bremerhaven,Nordsee" name="LehrendeDropdown" class="dropdown" style="display: none;" />
-        <ui:Button text="Play" name="LehrendePlayButton" class="button" style="margin-top: 23px; display: none;" />
         <ui:Button text="Zurück" name="LehrendeZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
     <ui:VisualElement name="SchulungsteilnehmerContainer" class="background" style="flex-grow: 1; display: none;">
@@ -34,8 +32,11 @@
     </ui:VisualElement>
     <ui:VisualElement name="SzenenErstellungContainer" enabled="true" class="background" style="flex-grow: 1; display: none;">
         <ui:Label text="Szenen erstellen" name="SzenenErstellungOptionen" enable-rich-text="true" emoji-fallback-support="false" class="header" style="opacity: 1; font-size: 50px;" />
-        <ui:DropdownField label="Dropdown" name="SzenenDropdown" style="display: none;" />
-        <ui:DropdownField label="Dropdown" name="WetterDropdown" />
-        <ui:DropdownField label="Dropdown" name="SchiffDropdown" />
+        <ui:TextField label="Name" placeholder-text="z.B. Szenario 1" name="SzenarioTextField" class="dropdown" />
+        <ui:DropdownField label="Szene" name="SzenenDropdown" choices="Fluss (Bremen),Meer (Nordsee)" class="dropdown" />
+        <ui:DropdownField label="Wetter" name="WetterDropdown" choices="Klares Wetter,Regen,Hagel,Schnee,Nebel" class="dropdown" />
+        <ui:DropdownField label="Schiff" name="SchiffDropdown" choices="BS Diana" class="dropdown" />
+        <ui:Button text="Erstellen" name="ErstellenButton" class="button" style="font-size: 49px; margin-top: 44px;" />
+        <ui:Button text="Zurück" name="SzenenErstellungZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
 </ui:UXML>
