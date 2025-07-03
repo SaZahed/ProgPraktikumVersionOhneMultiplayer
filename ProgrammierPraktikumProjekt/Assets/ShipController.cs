@@ -28,9 +28,9 @@ public class ShipController : MonoBehaviour
         speedLabel = root.Q<Label>("Speed");
         ankerText = root.Q<Label>("Anker");
     }
-        agent = GetComponent<NavMeshAgent>();
-        endPosition = GameObject.FindGameObjectWithTag("End").transform.position;
-        agent.SetDestination(endPosition);
+        //agent = GetComponent<NavMeshAgent>();
+        //endPosition = GameObject.FindGameObjectWithTag("End").transform.position;
+        //agent.SetDestination(endPosition);
     }
 
     // Update is called once per frame
