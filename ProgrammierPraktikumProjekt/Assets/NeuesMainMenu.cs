@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System.IO;
+
 
 public class NeuesMainMenu : MonoBehaviour
 {
@@ -10,7 +12,6 @@ public class NeuesMainMenu : MonoBehaviour
     private VisualElement studierendeContainer;
     private VisualElement lehrendeContainer;
     private VisualElement schulungsteilnehmerContainer;
-   
     private VisualElement szenenErstellungContainer;
 
 
@@ -19,6 +20,8 @@ public class NeuesMainMenu : MonoBehaviour
     private DropdownField szenenDropdown;
     private DropdownField wetterDropdown;
     private DropdownField schiffDropdown;
+
+    private TextField szenarioName;
 
 
     private void Awake()
@@ -38,16 +41,12 @@ public class NeuesMainMenu : MonoBehaviour
 
         szenenErstellungContainer = root.Q<VisualElement>("SzenenErstellungContainer");
 
+        //Lehrende Container Buttons
+        root.Q<Button>("SzenarioErstellenButton").clicked += () => ShowPanel(szenenErstellungContainer);
 
         // Dropdowns zuweisen
         studierendeDropdown = root.Q<DropdownField>("StudierendeDropdown");
         schulungsteilnehmerDropdown = root.Q<DropdownField>("SchulungsteilnehmerDropdown");
-        
-        //Dropdown bei "Szenen Erstellen"
-        szenenDropdown = root.Q<DropdownField>("SzenenDropdown");
-        wetterDropdown = root.Q<DropdownField>("WetterDropdown");
-        schiffDropdown = root.Q<DropdownField>("SchiffDropdown");
-
 
         // Die Buttons auf der StartSeite
         root.Q<Button>("StudierendeButton").clicked += () => ShowPanel(studierendeContainer);
@@ -66,8 +65,12 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("SchulungsteilnehmerZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
         root.Q<Button>("SzenenErstellungZurueckButton").clicked += () => ShowPanel(lehrendeContainer);
 
-        //Buttons bei LehrendeContainer
-        root.Q<Button>("SzenarioErstellenButton").clicked += () => ShowPanel(szenenErstellungContainer);
+        //Szenario Erstellen
+        szenarioName = root.Q<TextField>("SzenarioTextField");
+        szenenDropdown = root.Q<DropdownField>("SzenenDropdown");
+        wetterDropdown = root.Q<DropdownField>("WetterDropdown");
+        schiffDropdown = root.Q<DropdownField>("SchiffDropdown");
+        root.Q<Button>("ErstellenButton1").clicked += () => SpeichereSzenarioAlsJson(new SzenarioKlasse(szenarioName.value, szenenDropdown.value, wetterDropdown.value, schiffDropdown.value));
 
     }
 
@@ -93,6 +96,16 @@ public class NeuesMainMenu : MonoBehaviour
         {
             Debug.LogWarning("Keine Szene ausgewählt!");
         }
+    }
+
+    public static void SpeichereSzenarioAlsJson(SzenarioKlasse SzenarioKlasse)
+    {
+        string dateiPfad = "Assets/szenario.json";
+        // Serialisierung mit Formatierung
+        string jsonString = JsonUtility.ToJson(SzenarioKlasse, true);
+
+        // In Datei schreiben
+        File.WriteAllText(dateiPfad, jsonString);
     }
 
     private void QuitGame()

@@ -10,8 +10,7 @@
     </ui:VisualElement>
     <ui:VisualElement name="StudierendeContainer" enabled="true" style="flex-grow: 1; display: none; background-image: url(&quot;project://database/Assets/cartoon-background-with-sea-ship-and-natural-beauty-free-video.jpg?fileID=2800000&amp;guid=a2d502934fc6e9a499f780a3b288ac82&amp;type=3#cartoon-background-with-sea-ship-and-natural-beauty-free-video&quot;);">
         <ui:Label text="Studierende" name="StudierendeOptionen" emoji-fallback-support="true" class="header" />
-        <ui:DropdownField label="Szene" name="StudierendeDropdown" choices="Bremen,Bremerhaven,Nordsee" class="dropdown" />
-        <ui:DropdownField label="Übungsszenarien" name="UebungsszenarienDropdown" class="dropdown" style="margin-top: 20px;" />
+        <ui:DropdownField label="Szenarien" name="SzenarienDropdown" choices="Bremen,Bremerhaven,Nordsee" class="dropdown" />
         <ui:DropdownField label="Multi User" name="MultiUserDropdown" choices="Ja,Nein" class="dropdown" style="margin-top: 20px;" />
         <ui:Button text="Play" name="StudierendePlayButton" class="button" style="margin-top: 23px; display: flex;" />
         <ui:Button text="Zurück" name="StudierendeZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
@@ -36,7 +35,7 @@
         <ui:DropdownField label="Szene" name="SzenenDropdown" choices="Fluss (Bremen),Meer (Nordsee)" class="dropdown" />
         <ui:DropdownField label="Wetter" name="WetterDropdown" choices="Klares Wetter,Regen,Hagel,Schnee,Nebel" class="dropdown" />
         <ui:DropdownField label="Schiff" name="SchiffDropdown" choices="BS Diana" class="dropdown" />
-        <ui:Button text="Erstellen" name="ErstellenButton" class="button" style="font-size: 49px; margin-top: 44px;" />
+        <ui:Button text="Erstellen" name="ErstellenButton1" class="button" style="font-size: 49px; margin-top: 44px;" />
         <ui:Button text="Zurück" name="SzenenErstellungZurueckButton" class="button" style="width: auto; margin-top: 17px; font-size: 33px;" />
     </ui:VisualElement>
 </ui:UXML>
