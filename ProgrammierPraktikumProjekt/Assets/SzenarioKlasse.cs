@@ -3,10 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class SzenarioKlasse
 {
-    private string name;
-    private string szene;
-    private string wetter;
-    private string schiff;
+    public string name;
+    public string szene;
+    public string wetter;
+    public string schiff;
 
     public SzenarioKlasse(string name, string szene, string wetter, string schiff)
     {

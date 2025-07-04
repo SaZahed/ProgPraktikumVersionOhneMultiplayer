@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEditor.SearchService;
 
 
 public class NeuesMainMenu : MonoBehaviour
@@ -70,27 +71,32 @@ public class NeuesMainMenu : MonoBehaviour
         szenenDropdown = root.Q<DropdownField>("SzenenDropdown");
         wetterDropdown = root.Q<DropdownField>("WetterDropdown");
         schiffDropdown = root.Q<DropdownField>("SchiffDropdown");
-        root.Q<Button>("ErstellenButton1").clicked += () => SpeichereSzenarioAlsJson(new SzenarioKlasse(szenarioName.value, szenenDropdown.value, wetterDropdown.value, schiffDropdown.value));
-        Debug.Log($"Name: {szenarioName.value}, Szene: {szenenDropdown.value}, Wetter: {wetterDropdown.value}, Schiff: {schiffDropdown.value}"); //wird nichts übergeben siehe konsole
+        //root.Q<Button>("ErstellenButton1").clicked += () => SpeichereSzenarioAlsJson(new SzenarioKlasse(szenarioName.value, szenenDropdown.value, wetterDropdown.value, schiffDropdown.value));
+        //Debug.Log($"Name: {szenarioName.value}, Szene: {szenenDropdown.value}, Wetter: {wetterDropdown.value}, Schiff: {schiffDropdown.value}"); //wird nichts übergeben siehe konsole
 
-        //var erstellenButton = root.Q<Button>("ErstellenButton1");
+        var erstellenButton = root.Q<Button>("ErstellenButton1");
 
-        //if (erstellenButton == null)
-        //{
-        //    Debug.LogError("ErstellenButton1 nicht gefunden! Überprüfe den Namen im UXML.");
-        //}
-        //else
-        //{
-        //    erstellenButton.clicked += () =>
-        //    {
-        //        Debug.Log("ErstellenButton1 wurde geklickt!");//es wird auf jeden fall geklickt
-        //        SpeichereSzenarioAlsJson(new SzenarioKlasse(
-        //            szenarioName.value,
-        //            szenenDropdown.value,
-        //            wetterDropdown.value,
-        //            schiffDropdown.value));
-        //    };
-        //}
+        if (erstellenButton == null)
+        {
+            Debug.LogError("ErstellenButton1 nicht gefunden! Überprüfe den Namen im UXML.");
+        }
+        else
+        {
+            erstellenButton.clicked += () =>
+            {
+                //Debug.Log("ErstellenButton1 wurde geklickt!");//es wird auf jeden fall geklickt
+                
+                    string name = szenarioName?.value;
+                    string szene = szenenDropdown?.value;
+                    string wetter = wetterDropdown?.value;
+                    string schiff = schiffDropdown?.value;
+
+                Debug.Log($"Name: {name}, Szene: {szene}, Wetter: {wetter}, Schiff: {schiff}");//hier sieht man, dass die param richtig aus Usereingabe genommen werden
+
+
+                SpeichereSzenarioAlsJson(new SzenarioKlasse(name, szene, wetter, schiff));
+            };
+        }
 
     }
 
