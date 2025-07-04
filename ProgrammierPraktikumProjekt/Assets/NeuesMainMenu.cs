@@ -71,6 +71,26 @@ public class NeuesMainMenu : MonoBehaviour
         wetterDropdown = root.Q<DropdownField>("WetterDropdown");
         schiffDropdown = root.Q<DropdownField>("SchiffDropdown");
         root.Q<Button>("ErstellenButton1").clicked += () => SpeichereSzenarioAlsJson(new SzenarioKlasse(szenarioName.value, szenenDropdown.value, wetterDropdown.value, schiffDropdown.value));
+        Debug.Log($"Name: {szenarioName.value}, Szene: {szenenDropdown.value}, Wetter: {wetterDropdown.value}, Schiff: {schiffDropdown.value}"); //wird nichts übergeben siehe konsole
+
+        //var erstellenButton = root.Q<Button>("ErstellenButton1");
+
+        //if (erstellenButton == null)
+        //{
+        //    Debug.LogError("ErstellenButton1 nicht gefunden! Überprüfe den Namen im UXML.");
+        //}
+        //else
+        //{
+        //    erstellenButton.clicked += () =>
+        //    {
+        //        Debug.Log("ErstellenButton1 wurde geklickt!");//es wird auf jeden fall geklickt
+        //        SpeichereSzenarioAlsJson(new SzenarioKlasse(
+        //            szenarioName.value,
+        //            szenenDropdown.value,
+        //            wetterDropdown.value,
+        //            schiffDropdown.value));
+        //    };
+        //}
 
     }
 
@@ -100,7 +120,9 @@ public class NeuesMainMenu : MonoBehaviour
 
     public static void SpeichereSzenarioAlsJson(SzenarioKlasse SzenarioKlasse)
     {
-        string dateiPfad = "Assets/szenario.json";
+        //string dateiPfad = "Assets/szenario.json";
+        string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");
+
         // Serialisierung mit Formatierung
         string jsonString = JsonUtility.ToJson(SzenarioKlasse, true);
 
