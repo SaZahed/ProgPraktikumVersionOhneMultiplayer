@@ -61,8 +61,10 @@ public class ShipController : MonoBehaviour
         speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
         if (Input.GetKeyDown("m"))
         {
-            Instantiate(shipAgent, startPosition.transform.position, Quaternion.identity);
+            //Instantiate(shipAgent, startPosition.transform.position, Quaternion.identity);
+            //SpawnAndSetAgent();
         }
+
     }
 
     private void FixedUpdate()
@@ -125,6 +127,15 @@ public class ShipController : MonoBehaviour
             rb.linearDamping = 10f;
             Debug.Log("Schiff gestoppt durch Trigger: " + other.name);
         }
+    }
+
+    private void SpawnAndSetAgent()
+    {
+        Quaternion prefabRotation = shipAgent.transform.rotation;
+        GameObject newAgent = Instantiate(shipAgent, startPosition.transform.position, prefabRotation); ;
+        NavMeshAgent navAgent = newAgent.GetComponent<NavMeshAgent>();
+        GameObject endTarget = GameObject.FindGameObjectWithTag("End");
+        navAgent.SetDestination(endTarget.transform.position);
     }
 }
 
