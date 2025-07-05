@@ -16,7 +16,7 @@ public class NeuesMainMenu : MonoBehaviour
     private VisualElement szenenErstellungContainer;
 
 
-    private DropdownField studierendeDropdown;
+    private DropdownField szenarienDropdown;
     private DropdownField schulungsteilnehmerDropdown;
     private DropdownField szenenDropdown;
     private DropdownField wetterDropdown;
@@ -46,7 +46,7 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("SzenarioErstellenButton").clicked += () => ShowPanel(szenenErstellungContainer);
 
         // Dropdowns zuweisen
-        studierendeDropdown = root.Q<DropdownField>("StudierendeDropdown");
+        szenarienDropdown = root.Q<DropdownField>("SzenarienDropdown");
         schulungsteilnehmerDropdown = root.Q<DropdownField>("SchulungsteilnehmerDropdown");
 
         // Die Buttons auf der StartSeite
@@ -57,8 +57,8 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("QuitButton").clicked += QuitGame;
 
         // Die Play Buttons bei den Containern
-        root.Q<Button>("StudierendePlayButton").clicked += () => LoadScene(studierendeDropdown.value);
-        root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () => LoadScene(schulungsteilnehmerDropdown.value);
+        //root.Q<Button>("StudierendePlayButton").clicked += () => LoadScene(studierendeDropdown.value);
+        //root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () => LoadScene(schulungsteilnehmerDropdown.value);
 
         // Die Zurück Buttons bei den Containern
         root.Q<Button>("StudierendeZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
