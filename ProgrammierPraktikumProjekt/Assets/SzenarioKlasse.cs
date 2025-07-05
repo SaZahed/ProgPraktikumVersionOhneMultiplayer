@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//die Speicherung von Szenarien wurde mithilfe von ChatGPT erstellt
 [System.Serializable]
 public class SzenarioKlasse
 {

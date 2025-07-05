@@ -1,7 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
-
+//day and night cycle wurde mithilfe folgendes Tutorial umgzesetzt: https://youtu.be/L4t2c1_Szdk?si=ZBYCjewzvOpwI5dX
 public class TimeController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created

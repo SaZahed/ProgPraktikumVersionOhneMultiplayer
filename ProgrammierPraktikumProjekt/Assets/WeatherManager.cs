@@ -5,6 +5,8 @@ using UnityEngine.VFX;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 
+// das Wetter wurde mithilfe vom folgendem Tutorial erstellt: https://youtu.be/usEoUnmDDO0?si=uEL6RyebNg54QnDA 
+
 public class WeatherManager : MonoBehaviour
 {
     [SerializeField, Range(0f, 10f)] float RainIntensity;
