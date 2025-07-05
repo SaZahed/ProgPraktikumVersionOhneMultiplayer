@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 //die Speicherung von Szenarien wurde mithilfe von ChatGPT erstellt
@@ -17,3 +18,10 @@ public class SzenarioKlasse
         this.schiff = schiff;
     }
 }
+
+[System.Serializable]
+public class SzenarioListe
+{
+    public List<SzenarioKlasse> szenarien = new List<SzenarioKlasse>();
+}
+

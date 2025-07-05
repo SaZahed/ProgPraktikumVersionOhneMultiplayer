@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using System.IO;
-using UnityEditor.SearchService;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 
 public class NeuesMainMenu : MonoBehaviour
@@ -23,6 +24,7 @@ public class NeuesMainMenu : MonoBehaviour
     private DropdownField schiffDropdown;
 
     private TextField szenarioName;
+    private List<SzenarioKlasse> gespeicherteSzenarien = new List<SzenarioKlasse>();
 
 
     private void Awake()
@@ -56,9 +58,34 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("OptionsButton").clicked += () => Debug.Log("Options clicked");
         root.Q<Button>("QuitButton").clicked += QuitGame;
 
+        gespeicherteSzenarien = LadeSzenarienAusJson();
+        if (szenarienDropdown != null)
+        {
+            szenarienDropdown.choices = gespeicherteSzenarien.Select(s => s.name).ToList();
+        }
+        if (schulungsteilnehmerDropdown != null)
+        {
+            schulungsteilnehmerDropdown.choices = gespeicherteSzenarien.Select(s => s.name).ToList();
+        }
+
         // Die Play Buttons bei den Containern
         //root.Q<Button>("StudierendePlayButton").clicked += () => LoadScene(studierendeDropdown.value);
         //root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () => LoadScene(schulungsteilnehmerDropdown.value);
+        
+        // Play-Button für Studierende
+        root.Q<Button>("StudierendePlayButton").clicked += () =>
+        {
+            string ausgewaehlterName = szenarienDropdown.value;
+            var szenario = gespeicherteSzenarien.Find(s => s.name == ausgewaehlterName);
+            LoadScene(szenario.szene);
+        };
+        // Play-Button für Schulungsteilnehmer
+        root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () =>
+        {
+            string ausgewaehlterName = schulungsteilnehmerDropdown.value;
+            var szenario = gespeicherteSzenarien.Find(s => s.name == ausgewaehlterName);
+            LoadScene(szenario.szene);
+        };
 
         // Die Zurück Buttons bei den Containern
         root.Q<Button>("StudierendeZurueckButton").clicked += () => ShowPanel(startSeiteContainer);
@@ -97,7 +124,6 @@ public class NeuesMainMenu : MonoBehaviour
                 SpeichereSzenarioAlsJson(new SzenarioKlasse(name, szene, wetter, schiff));
             };
         }
-
     }
 
     private void ShowPanel(VisualElement targetPanel)
@@ -124,16 +150,49 @@ public class NeuesMainMenu : MonoBehaviour
         }
     }
 
-    public static void SpeichereSzenarioAlsJson(SzenarioKlasse SzenarioKlasse)
+    //public static void SpeichereSzenarioAlsJson(SzenarioKlasse SzenarioKlasse)
+    //{
+    //    //string dateiPfad = "Assets/szenario.json";
+    //    string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");
+
+    //    // Serialisierung mit Formatierung
+    //    string jsonString = JsonUtility.ToJson(SzenarioKlasse, true);
+
+    //    // In Datei schreiben
+    //    File.WriteAllText(dateiPfad, jsonString);
+    //}
+    public static void SpeichereSzenarioAlsJson(SzenarioKlasse neuesSzenario)
     {
-        //string dateiPfad = "Assets/szenario.json";
         string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");
 
-        // Serialisierung mit Formatierung
-        string jsonString = JsonUtility.ToJson(SzenarioKlasse, true);
+        SzenarioListe szenarioListe = new SzenarioListe();
 
-        // In Datei schreiben
-        File.WriteAllText(dateiPfad, jsonString);
+        if (File.Exists(dateiPfad))
+        {
+            string jsonAlt = File.ReadAllText(dateiPfad);
+            szenarioListe = JsonUtility.FromJson<SzenarioListe>(jsonAlt) ?? new SzenarioListe();
+        }
+
+        szenarioListe.szenarien.Add(neuesSzenario);
+
+        string jsonNeu = JsonUtility.ToJson(szenarioListe, true);
+        File.WriteAllText(dateiPfad, jsonNeu);
+    }
+
+    private List<SzenarioKlasse> LadeSzenarienAusJson()
+    {
+        string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");
+
+        string json = File.ReadAllText(dateiPfad);
+        SzenarioListe liste = JsonUtility.FromJson<SzenarioListe>(json);
+
+        if (liste == null || liste.szenarien == null)
+        {
+            Debug.LogWarning("Szenarien konnten nicht geladen werden oder Liste ist leer.");
+            return new List<SzenarioKlasse>();
+        }
+
+        return liste.szenarien;
     }
 
     private void QuitGame()

@@ -1,6 +1,16 @@
 {
-    "name": "Szenario 1",
-    "szene": "Fluss (Bremen)",
-    "wetter": "Klares Wetter",
-    "schiff": "BS Diana"
+    "szenarien": [
+        {
+            "name": "Szenario 1",
+            "szene": "Bremen",
+            "wetter": "Klares Wetter",
+            "schiff": "BS Diane"
+        },
+        {
+            "name": "Szenario 2",
+            "szene": "Nordsee",
+            "wetter": "Regen",
+            "schiff": "BS Diane"
+        }
+    ]
 }
