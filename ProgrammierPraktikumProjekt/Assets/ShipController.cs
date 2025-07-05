@@ -21,21 +21,18 @@ public class ShipController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     rb = GetComponent<Rigidbody>(); // Rigidbody-Referenz abrufen   
-    if (uiDocument != null)
-    {
-        var root = uiDocument.rootVisualElement;
-        speedLabel = root.Q<Label>("Speed");
-        ankerText = root.Q<Label>("Anker");
-    }
-        agent = GetComponent<NavMeshAgent>();
-        endPosition = GameObject.FindGameObjectWithTag("End").transform.position;
-        if (endPosition != null)
+        rb = GetComponent<Rigidbody>();
+
+        if (uiDocument != null)
         {
-            agent.SetDestination(endPosition);
+            var root = uiDocument.rootVisualElement;
+            speedLabel = root.Q<Label>("Speed");
+            ankerText = root.Q<Label>("Anker");
         }
 
+        agent = GetComponent<NavMeshAgent>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -49,26 +46,28 @@ public class ShipController : MonoBehaviour
         //{
         //    thrustBoost = 0f; // wenn H losgelassen wird, Boost zurücksetzen
         //}
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             dropAnchor();
             ShowPanel(ankerText);
         }
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("L gedrückt");
             liftAnchor();
             ankerText.style.display = DisplayStyle.None;
         }
+
         // Geschwindigkeit berechnen & anzeigen
         float speed = rb.linearVelocity.magnitude;
         speedLabel.text = $"Geschwindigkeit: {speed:0.0} m/s";
-        if (Input.GetKeyDown("m"))
-        {
-            //Instantiate(shipAgent, startPosition.transform.position, Quaternion.identity);
-            //SpawnAndSetAgent();
-        }
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SpawnAndSetAgent();
+        }
     }
 
     private void FixedUpdate()
@@ -136,10 +135,7 @@ public class ShipController : MonoBehaviour
     private void SpawnAndSetAgent()
     {
         Quaternion prefabRotation = shipAgent.transform.rotation;
-        GameObject newAgent = Instantiate(shipAgent, startPosition.transform.position, prefabRotation); ;
-        NavMeshAgent navAgent = newAgent.GetComponent<NavMeshAgent>();
-        GameObject endTarget = GameObject.FindGameObjectWithTag("End");
-        navAgent.SetDestination(endTarget.transform.position);
+        GameObject newAgent = Instantiate(shipAgent, startPosition.transform.position, prefabRotation);
     }
 }
 
