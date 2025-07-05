@@ -77,6 +77,7 @@ public class NeuesMainMenu : MonoBehaviour
         {
             string ausgewaehlterName = szenarienDropdown.value;
             var szenario = gespeicherteSzenarien.Find(s => s.name == ausgewaehlterName);
+            SzenarioDaten.Wetter = szenario.wetter;
             LoadScene(szenario.szene);
         };
         // Play-Button für Schulungsteilnehmer
@@ -84,6 +85,7 @@ public class NeuesMainMenu : MonoBehaviour
         {
             string ausgewaehlterName = schulungsteilnehmerDropdown.value;
             var szenario = gespeicherteSzenarien.Find(s => s.name == ausgewaehlterName);
+            SzenarioDaten.Wetter = szenario.wetter;
             LoadScene(szenario.szene);
         };
 

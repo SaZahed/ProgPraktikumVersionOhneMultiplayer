@@ -9,6 +9,13 @@ public class Wetter : MonoBehaviour
 
     [SerializeField] private WeatherManager weatherManager;
 
+    void Start()
+    {
+        if (!string.IsNullOrEmpty(SzenarioDaten.Wetter))
+        {
+            weatherManager.SetWetter(SzenarioDaten.Wetter);
+        }
+    }
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
