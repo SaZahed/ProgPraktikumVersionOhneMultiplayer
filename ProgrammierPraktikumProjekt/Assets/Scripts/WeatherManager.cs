@@ -20,6 +20,9 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] VisualEffect HailVFX;
     [SerializeField] Volume FogVolume;
 
+    public static WeatherManager Instance { get; private set; } //fuer Replayfunktion hinzugefügt
+
+
 
 
     float PreviousRainIntensity;
@@ -28,7 +31,20 @@ public class WeatherManager : MonoBehaviour
     float PreviousFogIntensity;
 
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); 
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+        }
+    }
     // Start is called before the first frame update
+
     void Start()
     {
         RainVFX.SetFloat("Intensity", RainIntensity);
@@ -108,5 +124,15 @@ public class WeatherManager : MonoBehaviour
                 FogIntensity = intensity;
                 break;
         }
+    }
+
+    //Unterstuetzung von ChatGPT, um den aktuellen Wettertyp zu erhalten
+    public string GetCurrentWeatherType()
+    {
+        if (RainIntensity > 0f) return "Regen";
+        if (SnowIntensity > 0f) return "Schnee";
+        if (HailIntensity > 0f) return "Hagel";
+        if (FogIntensity > 0f) return "Nebel";
+        return "Klares Wetter";
     }
 }

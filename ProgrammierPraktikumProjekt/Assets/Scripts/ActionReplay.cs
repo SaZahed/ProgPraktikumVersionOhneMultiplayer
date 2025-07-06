@@ -49,6 +49,9 @@ public class ActionReplay : MonoBehaviour
             {
                 position = transform.position,
                 rotation = transform.rotation,
+                
+                activeCameraIndex = CameraSwitcher.Instance.GetCurrentCameraIndex(),
+                currentWeather = WeatherManager.Instance.GetCurrentWeatherType(),
             });
         }
     }
@@ -58,5 +61,8 @@ public class ActionReplay : MonoBehaviour
         var record = records[index];
         transform.position = record.position;
         transform.rotation = record.rotation;
+
+        CameraSwitcher.Instance.SetCameraByIndex(record.activeCameraIndex);
+        WeatherManager.Instance.SetWetter(record.currentWeather);
     }
 }
