@@ -11,6 +11,12 @@
             "szene": "Nordsee",
             "wetter": "Regen",
             "schiff": "BS Diane"
+        },
+        {
+            "name": "Test",
+            "szene": "Bremen",
+            "wetter": "Klares Wetter",
+            "schiff": "MS Diane Schwarz "
         }
     ]
 }

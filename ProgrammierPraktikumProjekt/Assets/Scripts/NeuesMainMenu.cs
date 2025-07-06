@@ -78,6 +78,7 @@ public class NeuesMainMenu : MonoBehaviour
             string ausgewaehlterName = szenarienDropdown.value;
             var szenario = gespeicherteSzenarien.Find(s => s.name == ausgewaehlterName);
             SzenarioDaten.Wetter = szenario.wetter;
+            SzenarioDaten.Schiff = szenario.schiff; // Hier wird das Schiff gesetzt
             LoadScene(szenario.szene);
         };
         // Play-Button für Schulungsteilnehmer
@@ -103,6 +104,8 @@ public class NeuesMainMenu : MonoBehaviour
         //root.Q<Button>("ErstellenButton1").clicked += () => SpeichereSzenarioAlsJson(new SzenarioKlasse(szenarioName.value, szenenDropdown.value, wetterDropdown.value, schiffDropdown.value));
         //Debug.Log($"Name: {szenarioName.value}, Szene: {szenenDropdown.value}, Wetter: {wetterDropdown.value}, Schiff: {schiffDropdown.value}"); //wird nichts übergeben siehe konsole
 
+        schiffDropdown.choices = new List<string> { "MS Diane Weiss", "MS Diane Schwarz "};//neu Ansatz
+        
         var erstellenButton = root.Q<Button>("ErstellenButton1");
 
         if (erstellenButton == null)
