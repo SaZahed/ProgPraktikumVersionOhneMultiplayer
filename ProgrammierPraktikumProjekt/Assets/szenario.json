@@ -17,6 +17,18 @@
             "szene": "Bremen",
             "wetter": "Klares Wetter",
             "schiff": "MS Diane Schwarz "
+        },
+        {
+            "name": "BremenStandard",
+            "szene": "Bremen",
+            "wetter": "Klares Wetter",
+            "schiff": "MS Diane Weiss"
+        },
+        {
+            "name": "NordseeStandard",
+            "szene": "Nordsee",
+            "wetter": "Klares Wetter",
+            "schiff": "MS Diane Weiss"
         }
     ]
 }
