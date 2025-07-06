@@ -126,9 +126,13 @@ public class ShipController : MonoBehaviour
     {
         if (other.CompareTag("Ufer"))
         {
-            anchorDropped = true;
-            rb.linearDamping = 10f;
             Debug.Log("Schiff gestoppt durch Trigger: " + other.name);
+            dropAnchor();
+        }
+        if (other.CompareTag("Agent"))
+        {
+            Debug.Log("Schiff gestoppt durch Trigger: " + other.name);
+            dropAnchor();
         }
     }
 
