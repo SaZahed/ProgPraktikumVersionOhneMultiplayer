@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bremen.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainDashboard.unity
     guid: 0412ae79a7361fb4e991674849f1a6f1
   - enabled: 1
@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bremerhaven.unity
     guid: fd86560ba3a5e5f498c01882a4c98339
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SzeneAuswahl.unity
     guid: 15a698ec87dce83418300f00f09842ad
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Options.unity
     guid: 9159cacf78a67ab4faf2363c2fc55272
   m_configObjects:
