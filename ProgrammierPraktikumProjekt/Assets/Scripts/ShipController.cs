@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
-//test nach verschiebung
+
 public class ShipController : MonoBehaviour
 {
     [SerializeField] private GameObject shipAgent;//Agent
@@ -16,7 +16,12 @@ public class ShipController : MonoBehaviour
     private Rigidbody rb;
     private NavMeshAgent agent;
     private Vector3 endPosition;
-    private float thrustBoost = 0f;  // zusätzlicher Schub
+    
+    
+    //damit beim Anker setzen das Schiff "langsamer" stoppt
+    private float targetDamping = 0.1f;
+    private float dampingLerpSpeed = 1.5f; // wie schnell sich das anpasst
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,18 +39,14 @@ public class ShipController : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.H))
         {
-            //thrustBoost = 0.5f;  // Schub um 0.5 erhöhen (auf einer Skala von -1 bis 1)//chatgpt empfehlung?
-            rb.linearDamping = 0.0f; //mein Ansatz den Wiederstand auf 0, damit es schneller wird "unsauber"
+            
+            rb.linearDamping = 0.0f; //mein Ansatz den Wiederstand auf 0, damit es schneller wird
         }
-        //if (Input.GetKeyUp(KeyCode.H))
-        //{
-        //    thrustBoost = 0f; // wenn H losgelassen wird, Boost zurücksetzen
-        //}
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -77,6 +78,8 @@ public class ShipController : MonoBehaviour
 
         applyForces(thrustInput);
         applyRotation(turnInput);
+
+        rb.linearDamping = Mathf.Lerp(rb.linearDamping, targetDamping, Time.fixedDeltaTime * dampingLerpSpeed); //fuer sanfteres anhalten
     }
     private void applyRotation(float turnInput)
     {
@@ -108,11 +111,13 @@ public class ShipController : MonoBehaviour
     {
         anchorDropped = true;
         rb.linearDamping = 10f; // starker Widerstand, damit das Schiff schnell stoppt
+        targetDamping = 10f;
     }
     private void liftAnchor()
     {
         anchorDropped = false;
-        rb.linearDamping = 0.1f; // normaler Widerstand
+        rb.linearDamping = 0.1f; // normaler Widerstand zum losfahren
+        targetDamping = 0.1f;
     }
 
     private void ShowPanel(Label targetPanel)

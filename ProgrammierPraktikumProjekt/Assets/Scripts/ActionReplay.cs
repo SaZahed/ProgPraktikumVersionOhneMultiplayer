@@ -7,7 +7,8 @@ public class ActionReplay : MonoBehaviour
     private bool isInReplayMode = false;
     private Rigidbody rb;
     private List<ActionReplayRecords> records = new List<ActionReplayRecords>();
-    private int replayIndex = 0; //angepasst mit ChatGpt
+    
+    private int replayIndex = 0; //angepasst mit ChatGpt: Idee von der KI, dass man einen Index braucht, um die Aufzeichnungen mit der passenden Kamerasicht abzuspielen
 
     void Start()
     {
@@ -52,6 +53,7 @@ public class ActionReplay : MonoBehaviour
                 
                 activeCameraIndex = CameraSwitcher.Instance.GetCurrentCameraIndex(),
                 currentWeather = WeatherManager.Instance.GetCurrentWeatherType(),
+                replayTime = TimeController.Instance.GetCurrentTimeOfDay()
             });
         }
     }
@@ -64,5 +66,6 @@ public class ActionReplay : MonoBehaviour
 
         CameraSwitcher.Instance.SetCameraByIndex(record.activeCameraIndex);
         WeatherManager.Instance.SetWetter(record.currentWeather);
+        TimeController.Instance.SetTimeOfDay(record.replayTime);
     }
 }

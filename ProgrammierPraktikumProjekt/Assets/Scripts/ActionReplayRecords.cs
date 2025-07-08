@@ -8,10 +8,11 @@ public class ActionReplayRecords
 
     public Quaternion rotation; //weil auch rotation aufgezeichnet werden soll
 
-    //im Video gab es nur die beiden zum speichern, aber bei uns sind es mehr sachen also:
+    //im Video gab es nur die beiden zum speichern, in unserem Projekt sind es weitere Komponenten
     
     public int activeCameraIndex;
-    public string currentWeather; 
+    public string currentWeather;
+    public System.TimeSpan replayTime;
 
 
 }

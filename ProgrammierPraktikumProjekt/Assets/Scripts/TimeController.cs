@@ -1,7 +1,9 @@
 using System;
 using TMPro;
 using UnityEngine;
-//day and night cycle wurde mithilfe folgendes Tutorial umgzesetzt: https://youtu.be/L4t2c1_Szdk?si=ZBYCjewzvOpwI5dX
+
+//day and night cycle wurde mithilfe folgendes Tutorial umgzesetzt:
+// https://youtu.be/L4t2c1_Szdk?si=ZBYCjewzvOpwI5dX
 public class TimeController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,15 +24,15 @@ public class TimeController : MonoBehaviour
     [SerializeField]
     private float sunsetHour;
 
-    private DateTime currentTime; //einfacher für berechnung
+    private DateTime currentTime; //einfacher fuer berechnung
 
     private TimeSpan sunriseTime;
     private TimeSpan sunsetTime;
 
-    [SerializeField] private Material daySkybox;
-    [SerializeField] private Material nightSkybox;
+    [SerializeField] private Material daySkybox; // Wird nicht genutzt: es bleibt die Standard-Skybox
+    [SerializeField] private Material nightSkybox; // von mir erstellte galaxy skybox ueber folgender webseite: https://tools.wwwtyro.net/space-3d/index.html#animationSpeed=0.1&fov=107&nebulae=true&pointStars=true&resolution=1024&seed=6jcc4aml3a40&stars=true&sun=true 
 
-
+    public static TimeController Instance { get; private set; }//notwenidig, um im Replay auf Zeit waehrend szene zuzugreifen 
 
 
     void Start()
@@ -41,8 +43,18 @@ public class TimeController : MonoBehaviour
         sunsetTime = TimeSpan.FromHours(sunsetHour);
 
     }
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateTimeOfDay();
@@ -101,7 +113,13 @@ public class TimeController : MonoBehaviour
             RenderSettings.skybox = nightSkybox;
         }
     }
-
-
+    public TimeSpan GetCurrentTimeOfDay()
+    {
+        return currentTime.TimeOfDay;
+    }
+    public void SetTimeOfDay(TimeSpan newTime)
+    {
+        currentTime = currentTime.Date + newTime;
+    }
 
 }
