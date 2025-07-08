@@ -29,6 +29,12 @@
             "szene": "Nordsee",
             "wetter": "Klares Wetter",
             "schiff": "MS Diane Weiss"
+        },
+        {
+            "name": "Dienstagsuebung",
+            "szene": "Nordsee",
+            "wetter": "Nebel",
+            "schiff": "MS Diane Weiss"
         }
     ]
 }
