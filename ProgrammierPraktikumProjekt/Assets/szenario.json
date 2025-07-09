@@ -35,6 +35,18 @@
             "szene": "Nordsee",
             "wetter": "Nebel",
             "schiff": "MS Diane Weiss"
+        },
+        {
+            "name": "hiiii",
+            "szene": "Bremen",
+            "wetter": "Hagel",
+            "schiff": "MS Diane Weiss"
+        },
+        {
+            "name": "hiiiiiiiiiih",
+            "szene": "Bremen",
+            "wetter": "Regen",
+            "schiff": "MS Diane Weiss"
         }
     ]
 }

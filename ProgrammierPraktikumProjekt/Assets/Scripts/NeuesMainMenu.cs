@@ -55,7 +55,6 @@ public class NeuesMainMenu : MonoBehaviour
         root.Q<Button>("StudierendeButton").clicked += () => ShowPanel(studierendeContainer);
         root.Q<Button>("LehrendeButton").clicked += () => ShowPanel(lehrendeContainer);
         root.Q<Button>("SchulungsteilnehmerButton").clicked += () => ShowPanel(schulungsteilnehmerContainer);
-        root.Q<Button>("OptionsButton").clicked += () => Debug.Log("Options clicked");
         root.Q<Button>("QuitButton").clicked += QuitGame;
 
         gespeicherteSzenarien = LadeSzenarienAusJson();
