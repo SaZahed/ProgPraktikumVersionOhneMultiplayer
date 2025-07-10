@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//die Speicherung von Szenarien wurde mithilfe von ChatGPT erstellt
+/// <summary>
+/// Repraesentiert ein vom Lehrer definiertes Szenario mit Name, Szenenbezeichnung, Wetterbedingung und ausgewaehltem Schiff.
+/// </summary>
+/// <remarks> die Speicherung von Szenarien wurde mithilfe von ChatGPT erstellt </remarks>
+
 [System.Serializable]
 public class SzenarioKlasse
 {
@@ -18,6 +22,10 @@ public class SzenarioKlasse
         this.schiff = schiff;
     }
 }
+
+/// <summary>
+/// Eine Liste von Szenarien zur Speicherung oder Verwaltung verschiedener Spielzustaende.
+/// </summary>
 
 [System.Serializable]
 public class SzenarioListe

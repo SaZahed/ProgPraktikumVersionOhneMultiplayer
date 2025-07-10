@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Diese Klasse implementiert die Logik hinter dem Wechseln der Kameras in Unity.
+/// </summary>
+
 public class CameraSwitcher : MonoBehaviour
 {
     public static CameraSwitcher Instance { get; private set; }//fuer Replayfunktion hinzugefügt
@@ -40,6 +44,9 @@ public class CameraSwitcher : MonoBehaviour
         bridgeCam.enabled = false;
     }
 
+    /// <summary>
+    /// Ermoeglicht Kamerawechsel per Tastendruck von C
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
@@ -48,17 +55,28 @@ public class CameraSwitcher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Wechselt zwischen der Hauptkamera und der Brückenkamera.
+    /// </summary>
     public void SwitchCamera()
     {
         bridgeCamOn = !bridgeCamOn; // bool wird umgedreht
         mainCam.enabled = !bridgeCamOn;
         bridgeCam.enabled = bridgeCamOn;
     }
+    /// <summary>
+    /// Gibt den aktuellen Kamera-Index zurueck. Bei Main Camera ist der Index 0, bei Bridge Camera ist der Index 1.
+    /// </summary>
+    /// <returns>Index der aktiven Kamera</returns>
     public int GetCurrentCameraIndex()
     {
         return bridgeCamOn ? 1 : 0;
     }
 
+    /// <summary>
+    /// Aktiviert eine Kamera anhand des Indexes. Benutzt 0 für die Hauptkamera und 1 für die Brückenkamera.
+    /// </summary>
+    /// <param> name="index" Kameraindex (0 oder 1)</param>
     public void SetCameraByIndex(int index)
     {
         bridgeCamOn = (index == 1);

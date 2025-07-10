@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Verwaltung dees main menues und den Interaktionen
+/// </summary>
 
 public class NeuesMainMenu : MonoBehaviour
 {
@@ -31,7 +34,9 @@ public class NeuesMainMenu : MonoBehaviour
     {
         uiDocument = GetComponent<UIDocument>();
     }
-
+    /// <summary>
+    /// Wird bei Aktivierung aufgerufen. Initialisiert die UI und Event-Callbacks.
+    /// </summary>
     private void OnEnable()
     {
         var root = uiDocument.rootVisualElement;
@@ -67,9 +72,7 @@ public class NeuesMainMenu : MonoBehaviour
             schulungsteilnehmerDropdown.choices = gespeicherteSzenarien.Select(s => s.name).ToList();
         }
 
-        // Die Play Buttons bei den Containern
-        //root.Q<Button>("StudierendePlayButton").clicked += () => LoadScene(studierendeDropdown.value);
-        //root.Q<Button>("SchulungsteilnehmerPlayButton").clicked += () => LoadScene(schulungsteilnehmerDropdown.value);
+        
         
         // Play-Button für Studierende
         root.Q<Button>("StudierendePlayButton").clicked += () =>
@@ -100,8 +103,6 @@ public class NeuesMainMenu : MonoBehaviour
         szenenDropdown = root.Q<DropdownField>("SzenenDropdown");
         wetterDropdown = root.Q<DropdownField>("WetterDropdown");
         schiffDropdown = root.Q<DropdownField>("SchiffDropdown");
-        //root.Q<Button>("ErstellenButton1").clicked += () => SpeichereSzenarioAlsJson(new SzenarioKlasse(szenarioName.value, szenenDropdown.value, wetterDropdown.value, schiffDropdown.value));
-        //Debug.Log($"Name: {szenarioName.value}, Szene: {szenenDropdown.value}, Wetter: {wetterDropdown.value}, Schiff: {schiffDropdown.value}"); //wird nichts übergeben siehe konsole
 
         schiffDropdown.choices = new List<string> { "MS Diane Weiss", "MS Diane Schwarz "};//neu Ansatz
         
@@ -115,14 +116,13 @@ public class NeuesMainMenu : MonoBehaviour
         {
             erstellenButton.clicked += () =>
             {
-                //Debug.Log("ErstellenButton1 wurde geklickt!");//es wird auf jeden fall geklickt
                 
                     string name = szenarioName?.value;
                     string szene = szenenDropdown?.value;
                     string wetter = wetterDropdown?.value;
                     string schiff = schiffDropdown?.value;
 
-                Debug.Log($"Name: {name}, Szene: {szene}, Wetter: {wetter}, Schiff: {schiff}");//hier sieht man, dass die param richtig aus Usereingabe genommen werden
+                Debug.Log($"Name: {name}, Szene: {szene}, Wetter: {wetter}, Schiff: {schiff}");
 
 
                 SpeichereSzenarioAlsJson(new SzenarioKlasse(name, szene, wetter, schiff));
@@ -130,6 +130,10 @@ public class NeuesMainMenu : MonoBehaviour
         }
     }
 
+     ///<summary>
+    /// Zeigt das angegebene Panel an und blendet alle anderen aus --> Verwaltung der Sichtbarkeit
+    /// </summary>
+    /// <param> name="targetPanel" ist das anzuzeigende UI-Element.</param>
     private void ShowPanel(VisualElement targetPanel)
     {
         startSeiteContainer.style.display = DisplayStyle.None;
@@ -142,6 +146,10 @@ public class NeuesMainMenu : MonoBehaviour
         targetPanel.style.display = DisplayStyle.Flex;
     }
 
+    /// <summary>
+    /// Lädt die Szene mit dem angegebenen Namen.
+    /// </summary>
+    /// <param> name="sceneName" Name der zu ladenden Szene.</param>
     private void LoadScene(string sceneName)
     {
         if (!string.IsNullOrEmpty(sceneName))
@@ -154,17 +162,10 @@ public class NeuesMainMenu : MonoBehaviour
         }
     }
 
-    //public static void SpeichereSzenarioAlsJson(SzenarioKlasse SzenarioKlasse)
-    //{
-    //    //string dateiPfad = "Assets/szenario.json";
-    //    string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");
-
-    //    // Serialisierung mit Formatierung
-    //    string jsonString = JsonUtility.ToJson(SzenarioKlasse, true);
-
-    //    // In Datei schreiben
-    //    File.WriteAllText(dateiPfad, jsonString);
-    //}
+    /// <summary>
+    /// Methode zum Speichern eines neuen Szenarios als JSON-Datei.
+    /// </summary>
+    /// <param> name="neuesSzenario" --> das erstellte szneanrio </param>
     public static void SpeichereSzenarioAlsJson(SzenarioKlasse neuesSzenario)
     {
         string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");
@@ -183,6 +184,10 @@ public class NeuesMainMenu : MonoBehaviour
         File.WriteAllText(dateiPfad, jsonNeu);
     }
 
+    /// <summary>
+    /// Laden der gepspeicherten Szenarien
+    /// </summary>
+    /// <returns>liste der geladenen szenarien </returns>
     private List<SzenarioKlasse> LadeSzenarienAusJson()
     {
         string dateiPfad = Path.Combine(Application.dataPath, "szenario.json");

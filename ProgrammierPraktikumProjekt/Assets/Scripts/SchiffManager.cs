@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Klasse wurde erstellt um die Schiffsauswahl zu verwalten indem vom menue ausgewaehlte diane geladen wird
+/// </summary>
+/// <remarks> die weitere Implementation konnte nicht umgesetzt weredn </remarks>
 public class SchiffManager : MonoBehaviour
 {
     public GameObject dianeWeiss;

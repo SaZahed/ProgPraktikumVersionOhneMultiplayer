@@ -1,20 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// Steuerung fuer das Hauptmenue der Simulation.
+/// Folgende Funktionen sind implementiert: starten, Optionen und beenden.
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
     public void startSimulation()
     {
         SceneManager.LoadScene("SzeneAuswahl");

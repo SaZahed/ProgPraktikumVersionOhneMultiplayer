@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
+/// <summary>
+/// Sorgt dafür, dass das Schiff sich an die Oberfläche einer HDRP-Wasserfläche anpasst.
+/// Nutzt die WaterSurface API von Unity HDRP für realistische Auf- und Abbewegung.
+/// </summary>
+/// <remarks> der Code wurde aus der Vorlesung uebernommen </remarks>
+
 public class ShipBuoyancy : MonoBehaviour
 {
     public WaterSurface targetSurface = null;
@@ -9,7 +15,6 @@ public class ShipBuoyancy : MonoBehaviour
     WaterSearchParameters searchParameters = new WaterSearchParameters();
     WaterSearchResult searchResult = new WaterSearchResult();
 
-    // Update is called once per frame
     private void Update()
     {
         if (targetSurface != null)

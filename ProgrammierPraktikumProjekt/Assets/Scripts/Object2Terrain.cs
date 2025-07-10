@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEditor;
- 
+
+/// <summary>
+/// Editor-Tool, um ein GameObject mit Mesh in ein Unity Terrain umzuwandeln.
+/// Raycasts werden verwendet, um Höheninformationen zu extrahieren.
+/// </summary>
+
 public class Object2Terrain : EditorWindow {
  
 	[MenuItem("Terrain/Object to Terrain", false, 2000)] static void OpenWindow () {
@@ -13,6 +18,10 @@ public class Object2Terrain : EditorWindow {
 	int bottomTopRadioSelected = 0;
 	static string[] bottomTopRadio = new string[] { "Bottom Up", "Top Down"};
 	private float shiftHeight = 0f;
+
+	/// <summary>
+	/// GUI Ansicht Einstellungen 
+	/// </summary>
  
 	void OnGUI () {
  
@@ -37,8 +46,13 @@ public class Object2Terrain : EditorWindow {
 	}
  
 	delegate void CleanUp();
- 
-	void CreateTerrain(){	
+
+    /// <summary>
+    /// Wandelt das ausgewählte GameObject in ein Terrain um.
+    /// Nutzt Raycasting zur Bestimmung der Höhenwerte.
+    /// </summary>
+
+    void CreateTerrain(){	
  
 		//fire up the progress bar
 		ShowProgressBar(1, 100);
