@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Die Wetter Klasse verknuepft die UI-Elemente (Dropdown und Slider) mit dem weatherManager
+/// Benutzer:innen können darüber den Wettertyp und dessen Intensität in der Simulation ändern.
+/// </summary>
+
 public class Wetter : MonoBehaviour
 {
     private UIDocument uiDocument;

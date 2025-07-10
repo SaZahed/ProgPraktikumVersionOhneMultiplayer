@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
-//die Replay funktion wurde mithilfe von folgendem Tutorial erstellt: https://youtu.be/R8RinJDzhf8?si=HEylm_vra8GaieGY
+
+/// <summary>
+/// Zeichnet Positions-, Kamera-, Wetter- und Zeitdaten für eine Replay-Funktion auf. Und ermöglicht das aktivieren bzw. steuern der Funktion
+/// </summary>
 
 public class ActionReplay : MonoBehaviour
 {
@@ -15,6 +18,10 @@ public class ActionReplay : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    /// <summary>
+    /// R"-Taste zum Ein-/Ausschalten des Replay-Modus.
+    /// Setzt den Index zurück und aktiviert/deaktiviert Physik entsprechend.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -58,6 +65,10 @@ public class ActionReplay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Setzt Position, Rotation, Kamera, Wetter und Zeit auf den aufgezeichneten Zustand.
+    /// </summary>
+    /// <param>entsprechender Parameter ist name="index"</param>
     private void SetTransform(int index)
     {
         var record = records[index];

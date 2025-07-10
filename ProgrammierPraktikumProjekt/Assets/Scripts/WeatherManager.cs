@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -6,6 +6,10 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 
 // das Wetter wurde mithilfe vom folgendem Tutorial erstellt: https://youtu.be/usEoUnmDDO0?si=uEL6RyebNg54QnDA 
+/// <summary>
+/// Diese File ist dafuer zustaendig das Wetter zu verwalten und die entsprechenden Effekte zu setzen.
+/// </summary>
+
 
 public class WeatherManager : MonoBehaviour
 {
@@ -20,7 +24,7 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] VisualEffect HailVFX;
     [SerializeField] Volume FogVolume;
 
-    public static WeatherManager Instance { get; private set; } //fuer Replayfunktion hinzugef�gt
+    public static WeatherManager Instance { get; private set; } //fuer Replayfunktion hinzugefügt
 
 
 
@@ -80,6 +84,11 @@ public class WeatherManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Setzt das Wetter basierend auf einem String zurueck und aktiviert den gewaehlten Effekt.
+    /// </summary>
+    /// <param> string type der gewuenschte Wettertyp wird uebergeben.</param>
+
     public void SetWetter(string type)
     {
         RainIntensity = 0f;
@@ -106,6 +115,10 @@ public class WeatherManager : MonoBehaviour
                 break;
         }
     }
+    /// <summary>
+    /// Pastst die Intensitaet eines des Wetterverhaeltnisses an
+    /// </summary>
+    /// <param> Wettertyp als String und Intensity als float</param>
 
     public void UpdateIntensity(string type, float intensity)
     {
@@ -126,7 +139,11 @@ public class WeatherManager : MonoBehaviour
         }
     }
 
-    //Unterstuetzung von ChatGPT, um den aktuellen Wettertyp zu erhalten
+    /// <summary>
+    /// Hilft den aktuellen Wettertyp zu ermitteln.
+    /// </summary>
+    /// <returns>Aktueller Wetterzustand als String (z. B. "Regen", "Klares Wetter").</returns>
+    /// <remarks> Unterstuetzung von ChatGPT, um den aktuellen Wettertyp zu erhalten </remarks>
     public string GetCurrentWeatherType()
     {
         if (RainIntensity > 0f) return "Regen";

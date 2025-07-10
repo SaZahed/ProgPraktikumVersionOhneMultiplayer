@@ -2,11 +2,14 @@ using System;
 using TMPro;
 using UnityEngine;
 
-//day and night cycle wurde mithilfe folgendes Tutorial umgzesetzt:
-// https://youtu.be/L4t2c1_Szdk?si=ZBYCjewzvOpwI5dX
+
+/// <summary>
+/// Die TimeController Klasse verwaltet den Tag- und Nachtzyklus in der Simulation.
+/// Basierend auf der Uhrzeit wird die Tageszeit angepasst und die Sonne rotiert entsprechend.
+/// </summary>
+/// <remakrs>day and night cycle wurde mithilfe folgendes Tutorial umgzesetzt:  https://youtu.be/L4t2c1_Szdk?si=ZBYCjewzvOpwI5dX </remakrs>
 public class TimeController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField]
     private float timeMultiplier;//um geschwindigkeit der zeit zu kontrollieren
     [SerializeField]
@@ -34,6 +37,9 @@ public class TimeController : MonoBehaviour
 
     public static TimeController Instance { get; private set; }//notwenidig, um im Replay auf Zeit waehrend szene zuzugreifen 
 
+    /// <summary>
+    /// Initialisiert die aktuelle Uhrzeit und berechnet Sonnenauf-/untergang.
+    /// </summary>
 
     void Start()
     {
@@ -43,6 +49,10 @@ public class TimeController : MonoBehaviour
         sunsetTime = TimeSpan.FromHours(sunsetHour);
 
     }
+
+    /// <summary>
+    /// Stellt sicher, dass es nur eine Instanz gibt (Singleton-Pattern), da Zugriff fuer Replay-Funktionalitaet benoetigt wird.
+    /// </summary>
     void Awake()
     {
         if (Instance == null)
@@ -62,6 +72,9 @@ public class TimeController : MonoBehaviour
         UpdateSkybox();
 
     }
+    /// <summary>
+    /// Aktualisiert die Uhrzeit basierend auf dem Zeitmultiplikator und zeigt sie im UI Dashbaord an.
+    /// </summary>
     private void UpdateTimeOfDay()
     {
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
@@ -70,6 +83,9 @@ public class TimeController : MonoBehaviour
             timeText.text = currentTime.ToString("HH:mm");
         }
     }
+    /// <summary>
+    /// Methoden rotiert die Sonne basierend auf der aktuellen Uhrzeit.
+    /// </summary>
     private void RotateSun()
     {
         float sunLightRotation;
@@ -95,6 +111,13 @@ public class TimeController : MonoBehaviour
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);//rotieren um x achse
 
     }
+
+    /// <summary>
+    /// berechnet den Zeitunterschied von start und endzeit
+    /// </summary>
+    /// <param> name="fromTime" ist die Startzeit  </param>
+    /// <param> name="toTime" ist die Endzeit </param>
+    /// <returns> der Zeitunterschied wird zurueckgegeben </returns>
     private TimeSpan CalculateTimeDifference(TimeSpan fromTime,TimeSpan toTime)
     {
         TimeSpan difference = toTime - fromTime;
@@ -104,6 +127,11 @@ public class TimeController : MonoBehaviour
         }
         return difference;
     }
+
+    /// <summary>
+    /// Sollte die Skybox basierend auf der Tageszeit (Tag/Nacht) aktualisieren
+    /// </summary>
+    /// <remarks> diese Methode funktioniert leider nicht </remarks> 
     private void UpdateSkybox()
     {
         bool isNight = currentTime.TimeOfDay <= sunriseTime || currentTime.TimeOfDay >= sunsetTime;
@@ -113,6 +141,11 @@ public class TimeController : MonoBehaviour
             RenderSettings.skybox = nightSkybox;
         }
     }
+
+    /// <summary>
+    /// Getter und Setter um Zugriff auf die aktuellen Zeiten zu bekommen, da diese im Replay benoetigt werden.
+    /// </summary>
+    /// <returns></returns>
     public TimeSpan GetCurrentTimeOfDay()
     {
         return currentTime.TimeOfDay;
